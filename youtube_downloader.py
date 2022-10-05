@@ -2,7 +2,7 @@
 
 from pytube import YouTube
 from pytube.cli import on_progress
-link = "https://www.youtube.com/watch?v=K8L6KVGG-7o&ab_channel=CoreySchafer"
+link = input("Enter the url of the video : ")
 youtube_1 = YouTube(link, on_progress_callback=on_progress)
 print(youtube_1.thumbnail_url)
 print("Title of the video : ", youtube_1.title)
