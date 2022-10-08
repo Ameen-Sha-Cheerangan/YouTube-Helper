@@ -6,8 +6,7 @@ url = input("Enter the youtube url : ")
 api_key = os.environ.get('YouTube_API')
 service = build('youtube', 'v3', developerKey=api_key)
 
-playlistid_pattern = re.compile(
-    r'[\?|&](list=)(.*)\&(.*)\&|[\?|&](list=)(.*)\&')
+playlistid_pattern = re.compile(r'[\?|&](list=)(\w*)\&?')
 pid = playlistid_pattern.search(url)
 pid = pid.group(2)
 videos = []
@@ -39,7 +38,6 @@ while True:
                 'url': yt_link
             }
         )
-
     nextPageToken = pl_response.get('nextPageToken')
     if not nextPageToken:  # for the last page this will give None
         break
