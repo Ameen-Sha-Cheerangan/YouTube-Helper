@@ -5,24 +5,9 @@ import re
 url = input("Enter the youtube url : ")
 api_key = os.environ.get('YouTube_API')
 service = build('youtube', 'v3', developerKey=api_key)
-# request = service.channels().list(
-#     part='statistics', id='UCCezIgC97PvUuR4_gbFUs5g')
-# response = request.execute()
-# print(response)
-
-# pl_request = service.playlists().list(
-#     part='snippet',
-#     channelId='UCCezIgC97PvUuR4_gbFUs5g')
-# pl_response = pl_request.execute()
-# print(pl_response)
-# for item in pl_response['items']:
-#     print(item)
-#     print()
-# We can find playlist id
-playlistid_pattern = re.compile(r'[\?|&](list=)(.*)\&')
+playlistid_pattern = re.compile(r'[\?|&](list=)(\w*)\&?')
 pid = playlistid_pattern.search(url)
 pid = pid.group(2)
-
 hours_pattern = re.compile(r'(\d+)H')
 minutes_pattern = re.compile(r'(\d+)M')
 seconds_pattern = re.compile(r'(\d+)S')
